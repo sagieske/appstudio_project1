@@ -5,8 +5,7 @@ class Pages extends CI_Controller {
     public function index()
     {
         // By default the "recipe" page is shown.
-        $this->view('recipe');
-        // Should be 'home' probably?
+        $this->view('home');
     }
     
     public function view($page)
