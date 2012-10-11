@@ -4,7 +4,11 @@ class Recipe extends CI_Model {
     // Class is meant to return different lists of recipes.
 
     public function get_all() {
+        // Get all known recipes into one big array.
         return $this->db->order_by('recipeID', 'asc')->get('recipes')->result();
+    }
+    public function get_one($id) { // Get a single recipe, with recipeID == $arg
+        return $this->db->get_where('recipes',array('recipeID' => $id))->result();
     }
     
     public function get_favorites() {
