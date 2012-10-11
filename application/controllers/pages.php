@@ -12,7 +12,7 @@ class Pages extends CI_Controller {
 
     }
     
-    public function view($page, $arg)
+    public function view($page, $arg = 'whatever')
     {
         /* This check seems to return nonexistant even when not appropriate.
 	    if ( ! file_exists('application/views/pages/'.$page.'.php'))
@@ -35,6 +35,8 @@ class Pages extends CI_Controller {
 	    } elseif ( $page == 'recipe' ) {
 	        $recipes = $this->Recipe->get_one($arg);
 	        $this->load->view('pages/'.$page, array('recipes' => $recipes));
+	    } else {
+	        $this->load->view('pages/'.$page, "nothing");
 	    }
 	    $this->load->view('templates/footer', $data);
 
