@@ -2,7 +2,7 @@
 
 // The array should be in memory at this point.
 foreach ($recipes as $recipe):
-    echo "<h3> <a href=\"http://appstudio_project1/pages/view/recipe/$recipe->recipeID\">
+    echo "<h3> <a href=\"recipe/$recipe->recipeID\">
         $recipe->name </a> </h3>";
     echo "<p> $recipe->description <br>";
     echo "Takes <b>$recipe->time</b> minutes. 

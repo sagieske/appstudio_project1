@@ -8,14 +8,14 @@
         <title>App title</title>
     </head>
     <body>
-        <div id=container data-role="page" data-theme="b">
-            <div id=header data-role="header">
-                <div id=title>
-                    <?php echo $title; ?>
-                </div>
+        <div id=container data-role="page" data-theme="c">
+            <div id=header data-role="header"><div id=title align=center>
+                <h3><?php echo 'ChefApp -'; ?>
+                <?php echo $title; ?>
+            </div>
             </div>
             <div data-role="content">
-                <a href='http://appstudio_project1/pages/view/home'>
+                <!--<a href='http://appstudio_project1/pages/view/home'>
                 <h1>APP TITLE</h1>
-                </a>
+                </a>-->
                 <hr/>
