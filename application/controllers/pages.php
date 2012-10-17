@@ -34,15 +34,25 @@ class Pages extends CI_Controller {
 	    // Showing the header, page, and footer.
 
 	    $this->load->view('templates/header', $data);
+	    //List page:
 	    if ( $page == 'list' ) {
 	        $recipes = $this->Recipe_model->get_all();
 	        $this->load->view('pages/'.$page, array('recipes' => $recipes));
-	    } elseif ( $page == 'recipe' ) {
+	    } 
+	    //Recipe page:
+	    elseif ( $page == 'recipe' ) {
 	        $recipes = $this->Recipe_model->get_one($arg);
 	        $this->load->view('pages/'.$page, array('recipes' => $recipes));
-	    } else {
+	    }
+	    //Search page
+	    elseif ( $page == 'search' ) {
+	        $this->load->view('pages/'.$page);
+	    }//
+	    else {
 	        $this->load->view('pages/'.$page, "nothing");
 	    }
+	    
+	    //Footer
 	    if ($page == 'recipe'){
 	        $this->load->view('templates/footerRecipe', $data);
 	        }

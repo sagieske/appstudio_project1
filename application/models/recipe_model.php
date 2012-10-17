@@ -26,9 +26,14 @@ class Recipe_model extends CI_Model {
         return $this->db->order_by('recipeID', 'asc')->get('recipes')->result();
     }
     
-    public function get_searched_time( $minutes, $over ) { // Over should be "off" or "on"?
-        // TODO: return every recipe that conforms to search.
+    public function get_searched_time() { // Over should be "off" or "on"?
         return $this->db->order_by('recipeID', 'asc')->get('recipes')->result();
+    }
+    
+    public function get_timemin(){
+        $this->db->select_min('time');
+        $query = $this->db->get('recipes');
+        return $query->result_array();
     }
 
 }
