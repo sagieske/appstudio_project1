@@ -1,3 +1,9 @@
+<?php
+
+// Put directly through to the app's home page.
+header( 'Location: pages/view/home' );
+
+/*
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,3 +92,4 @@
 
 </body>
 </html>
+*/ ?>

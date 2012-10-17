@@ -1,5 +1,6 @@
 <div data-role="footer" class="ui-bar" align="center" data-position="fixed">
     <div data-role="controlgroup" data-type="horizontal">
+        <!-- Note these links don't work when at appstudio_project1/pages/ -->
         <a href="home" data-role="button" data-icon="home" data-iconpos="notext">Home</a>
         <a href="list" data-role="button" data-icon="grid" data-iconpos="notext">List</a>
         <a href="search" data-role="button" data-icon="search" data-iconpos="notext">Search</a>

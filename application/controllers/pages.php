@@ -5,8 +5,8 @@ class Pages extends CI_Controller {
     public function index()
     {
         // By default the "recipe" page is shown.
-        $this->view('home','what');
-
+        // Links don't work when at 'appstudio_project1/pages', so redirect.
+        header( 'Location: view/home' );
         //var_dump($recipes);
         //exit;
 
@@ -14,13 +14,12 @@ class Pages extends CI_Controller {
     
     public function view($page, $arg = 'whatever')
     {
-        /* This check seems to return nonexistant even when not appropriate.
-	    if ( ! file_exists('application/views/pages/'.$page.'.php'))
+        // Full link to path is apparently necessary. Does this always work?
+	    if ( !file_exists('file:///home/jharvard/vhosts/appstudio_project1/application/views/pages/'.$page.'.php'))
 	    {
 		    // Whoops, we don't have a page for that!
 		    show_404();
 	    }
-	    */
 	    
 	    // Impromptu title for the page.
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
@@ -39,7 +38,7 @@ class Pages extends CI_Controller {
 	        $this->load->view('pages/'.$page, "nothing");
 	    }
 	    $this->load->view('templates/footer', $data);
-
+        
     }
 }
 
