@@ -27,6 +27,7 @@ class Pages extends CI_Controller {
 	    $this->load->model('Recipe');
 	    
 	    // Showing the header, page, and footer.
+
 	    $this->load->view('templates/header', $data);
 	    if ( $page == 'list' ) {
 	        $recipes = $this->Recipe->get_all();
@@ -37,7 +38,12 @@ class Pages extends CI_Controller {
 	    } else {
 	        $this->load->view('pages/'.$page, "nothing");
 	    }
-	    $this->load->view('templates/footer', $data);
+	    if ($page == 'recipe'){
+	        $this->load->view('templates/footerRecipe', $data);
+	        }
+	    else {
+	    	$this->load->view('templates/footer', $data);
+	    }
         
     }
 }
