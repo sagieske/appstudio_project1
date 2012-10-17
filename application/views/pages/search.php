@@ -46,5 +46,17 @@
 
 
 </fieldset>
+<!--
+<fieldset data-role="controlgroup" data-mini="true">
+    	<input type="radio" name="radio-mini" id="radio-mini-1" value="choice-1" checked="checked" />
+    	<label for="radio-mini-1">Credit</label>
+
+	<input type="radio" name="radio-mini" id="radio-mini-2" value="choice-2"  />
+    	<label for="radio-mini-2">Debit</label>
+    	
+    	<input type="radio" name="radio-mini" id="radio-mini-3" value="choice-3"  />
+    	<label for="radio-mini-3">Cash</label>
+</fieldset>-->
+
 <input type="submit" value="Search!">
 </div>
