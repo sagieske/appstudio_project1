@@ -1,6 +1,6 @@
 <?php
 
-class Recipe extends CI_Model {
+class Recipe_model extends CI_Model {
     // Class is meant to return different lists of recipes.
 
     public function get_all() {
