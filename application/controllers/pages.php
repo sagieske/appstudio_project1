@@ -46,7 +46,11 @@ class Pages extends CI_Controller {
 	    }
 	    //Search page
 	    elseif ( $page == 'search' ) {
-	        $this->load->view('pages/'.$page);
+	    	$data['mintime'] = $this->Recipe_model->get_min('time');
+	    	$data['maxtime'] = $this->Recipe_model->get_max('time');
+	    	$data['minyield'] = $this->Recipe_model->get_min('yield');
+	    	$data['maxyield'] = $this->Recipe_model->get_max('yield');
+	        $this->load->view('pages/'.$page, $data);
 	    }//
 	    else {
 	        $this->load->view('pages/'.$page, "nothing");

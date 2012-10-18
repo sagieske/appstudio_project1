@@ -30,8 +30,14 @@ class Recipe_model extends CI_Model {
         return $this->db->order_by('recipeID', 'asc')->get('recipes')->result();
     }
     
-    public function get_timemin(){
-        $this->db->select_min('time');
+    public function get_min($type){
+        $this->db->select_min($type);
+        $query = $this->db->get('recipes');
+        return $query->result_array();
+    }
+    
+    public function get_max($type){
+        $this->db->select_max($type);
         $query = $this->db->get('recipes');
         return $query->result_array();
     }

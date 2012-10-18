@@ -20,6 +20,30 @@
   }
 </script>
 
+
+<?php
+// "extract" the recipe from the array
+//$mintime = $mintime[0];
+//$maxtime = $maxtime;
+
+// Print all relevant information.
+echo var_dump($mintime[0]['time']);
+echo var_dump($maxtime[0]);
+echo var_dump($minyield[0]);
+echo var_dump($maxyield[0]);
+
+?>
+
+<label for="slider-1">Input slider:</label>
+<input type="range" name="slider-1" id="slider-1"  />
+
+<!--Script to set min time and max time on slider dependent on smallest/biggest time of all recipes-->
+<script>
+$("#slider-range-max").slider("option", "max", 20)
+$("#slider-1").attr("min", parseInt('<?php echo $mintime[0]['time'] ;?>'))
+$("#slider-1").attr("max", parseInt('<?php echo $maxtime[0]['time'] ;?>'))
+</script>
+
 <form action="show_searched_recipes" method="get">
 <fieldset data-role="controlgroup">
 	<legend>Search for:</legend>
