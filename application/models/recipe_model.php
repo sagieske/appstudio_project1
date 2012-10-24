@@ -41,6 +41,11 @@ class Recipe_model extends CI_Model {
         $query = $this->db->get('recipes');
         return $query->result_array();
     }
+    
+    public function login($un,$pw){
+        return ($un == 'user' && $pw == 'pass'); //TODO look into database
+        //(BTW, database looks also into you, BE CAREFUL)
+    }
 
 }
 

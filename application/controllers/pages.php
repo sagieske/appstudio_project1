@@ -7,6 +7,16 @@ class Pages extends CI_Controller {
         parent::__construct();
         $this->load->model('Recipe_model');
     }
+    
+    public function login() {
+        $un = $this->input->post("username");
+        if ( $un == ""){// && $pw == "" ){
+            return TRUE;
+        }
+        else {
+            return FALSE;
+        }
+    }
 
     public function index()
     {
@@ -51,7 +61,19 @@ class Pages extends CI_Controller {
 	    	$data['minyield'] = $this->Recipe_model->get_min('yield');
 	    	$data['maxyield'] = $this->Recipe_model->get_max('yield');
 	        $this->load->view('pages/'.$page, $data);
-	    }//
+	    }
+	    //Home page
+	    elseif ( $page == 'home' ) {
+	        // Check if logged in.
+	        if (isset($_POST['un'])) {
+	    	    $logged_in = $this->Recipe_model->login($_POST['un'],$_POST['pw']); 
+	    	}
+	    	else {
+	    	    $logged_in = FALSE;
+	    	}
+	    	//TODO: Needs to note name, session info, maybe?
+	        $this->load->view('pages/'.$page, array('logged_in' => $logged_in));
+	    }
 	    else {
 	        $this->load->view('pages/'.$page, "nothing");
 	    }
@@ -65,6 +87,7 @@ class Pages extends CI_Controller {
 	    }
         
     }
+    
 }
 
 ?>
