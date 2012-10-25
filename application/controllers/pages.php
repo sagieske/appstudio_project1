@@ -5,17 +5,22 @@ class Pages extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->load->library('session');
         $this->load->model('Recipe_model');
     }
     
     public function login() {
-        $un = $this->input->post("username");
-        if ( $un == ""){// && $pw == "" ){
-            return TRUE;
+        $un = $this->input->post("un");
+        $pw = $this->input->post("pw");
+        $correct = $this->Recipe_model->login($un, $pw);
+        if ( $correct ) {
+            $newdata = array(
+                   'username'  => $un,
+                   'logged_in' => TRUE
+            );
+            $this->session->set_userdata($newdata);
         }
-        else {
-            return FALSE;
-        }
+        return $correct;
     }
 
     public function index()
