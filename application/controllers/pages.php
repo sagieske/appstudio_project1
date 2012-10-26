@@ -95,9 +95,10 @@ class Pages extends CI_Controller {
 	    //user has just signed up!
 	    elseif ( $page == 'welcome' ) {
 	        if ( isset($_POST['un']) ) {
-	    	    $this->signup(); // This function does all the work.
+	    	    $itworked = $this->signup(); // This function does all the work.
 	    	}
-	        $this->load->view('pages/'.$page,'eh');
+	        if ($itworked) {$this->load->view('pages/'.$page,'eh');}
+	        else {$this->load->view('pages/signup_error','eh');}
 	    }
 	    //logging out!
 	    elseif ( $page == 'logout' ) {
