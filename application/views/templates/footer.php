@@ -22,6 +22,19 @@
     </div>
 </div><!-- /grid-a -->
 
+<?              
+                //Login notification here: 
+                echo '<P STYLE="text-align: right;">';
+                $li = $this->session->userdata('logged_in');
+                if ( $li == 1 ) {
+                    echo 'You are logged in, '.$this->session->userdata('username').'.';
+                } 
+                else { echo 'You are not logged in.'; } 
+                echo '</P>';
+                // TODO Print is all weird?
+?>
+                
+
     <br><strong>&copy; Arjen Swellengrebel en Sharon Gieske 2012</strong>
 </div>
 </div>

@@ -43,7 +43,9 @@ class Recipe_model extends CI_Model {
     }
     
     public function login($un,$pw){
-        return ($un == "" && $pw == ""); //TODO look into database
+        if ( $un == "arjen" && $pw == "" ) { return TRUE; }
+        else { return FALSE; }
+        //return ($un == "" && $pw == ""); //TODO look into database
         //(BTW, database looks also into you, BE CAREFUL)
     }
 

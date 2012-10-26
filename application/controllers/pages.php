@@ -9,16 +9,23 @@ class Pages extends CI_Controller {
         $this->load->model('Recipe_model');
     }
     
+    public function logout() {
+        $this->session->set_userdata('logged_in', FALSE );
+        $this->session->set_userdata('username', '' );
+    }
+    
     public function login() {
         $un = $this->input->post("un");
         $pw = $this->input->post("pw");
         $correct = $this->Recipe_model->login($un, $pw);
         if ( $correct ) {
             $newdata = array(
-                   'username'  => $un,
+                   'username'  => 'arjen',
                    'logged_in' => TRUE
-            );
+            ); 
+            echo $newdata['username'];
             $this->session->set_userdata($newdata);
+            echo $this->session->userdata('username');
         }
         return $correct;
     }
@@ -47,7 +54,7 @@ class Pages extends CI_Controller {
 	    $data['title'] = ucfirst($page); // Capitalize the first letter
 	    
 	    // Showing the header, page, and footer.
-
+        
 	    $this->load->view('templates/header', $data);
 	    //List page:
 	    if ( $page == 'list' ) {
@@ -69,19 +76,24 @@ class Pages extends CI_Controller {
 	    }
 	    //Home page
 	    elseif ( $page == 'home' ) {
-	        // Check if logged in.
-	        if (isset($_POST['un'])) {
-	    	    $logged_in = $this->Recipe_model->login($_POST['un'],$_POST['pw']); 
+	        // Check if logged in. 
+	        // TODO: probably better to load a different page when logging in.
+	        if ( isset($_POST['un']) ) {
+	    	    $this->login(); // This function does all the work.
 	    	}
-	    	else {
-	    	    $logged_in = FALSE;
-	    	}
-	    	//TODO: Needs to note name, session info, maybe?
-	        $this->load->view('pages/'.$page, array('logged_in' => $logged_in));
+	        $this->load->view('pages/'.$page,'eh');
 	    }
+	    //logging out!
+	    elseif ( $page == 'logout' ) {
+	        $this->session->unset_userdata('username');
+	        $this->session->unset_userdata('logged_in');
+	        $this->load->view('pages/'.$page,'eh');
+	    }
+	    // Catchall for other pages.
 	    else {
 	        $this->load->view('pages/'.$page, "nothing");
 	    }
+	    
 	    
 	    //Footer
 	    if ($page == 'recipe'){

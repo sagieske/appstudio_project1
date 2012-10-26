@@ -5,13 +5,15 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-        <title>App title</title>
+        <title>ChefApp</title>
     </head>
     <body>
         <div id=container data-role="page" data-theme="c">
             <div id=header data-role="header"><div id=title align=center>
-                <h3><?php echo 'ChefApp -'; ?>
-                <?php echo $title; ?>
+                <?php echo '<h3>ChefApp - '.$title.'</h3>';
+                
+                ?>
+                
             </div>
             </div>
             <div data-role="content">
@@ -19,3 +21,5 @@
                 <h1>APP TITLE</h1>
                 </a>
                 <hr/>-->
+                
+
