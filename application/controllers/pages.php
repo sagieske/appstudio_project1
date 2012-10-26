@@ -20,12 +20,23 @@ class Pages extends CI_Controller {
         $correct = $this->Recipe_model->login($un, $pw);
         if ( $correct ) {
             $newdata = array(
-                   'username'  => 'arjen',
+                   'username'  => $un,
                    'logged_in' => TRUE
-            ); 
-            echo $newdata['username'];
+            );
             $this->session->set_userdata($newdata);
-            echo $this->session->userdata('username');
+        }
+        return $correct;
+    }
+    public function signup() {
+        $un = $this->input->post("un");
+        $pw = $this->input->post("pw");
+        $correct = $this->Recipe_model->signup($un, $pw);
+        if ( $correct ) {
+            $newdata = array(
+                   'username'  => $un,
+                   'logged_in' => TRUE
+            );
+            $this->session->set_userdata($newdata);
         }
         return $correct;
     }
@@ -76,10 +87,15 @@ class Pages extends CI_Controller {
 	    }
 	    //Home page
 	    elseif ( $page == 'home' ) {
-	        // Check if logged in. 
-	        // TODO: probably better to load a different page when logging in.
 	        if ( isset($_POST['un']) ) {
 	    	    $this->login(); // This function does all the work.
+	    	}
+	        $this->load->view('pages/'.$page,'eh');
+	    }
+	    //user has just signed up!
+	    elseif ( $page == 'welcome' ) {
+	        if ( isset($_POST['un']) ) {
+	    	    $this->signup(); // This function does all the work.
 	    	}
 	        $this->load->view('pages/'.$page,'eh');
 	    }

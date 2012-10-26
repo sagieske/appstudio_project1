@@ -43,10 +43,30 @@ class Recipe_model extends CI_Model {
     }
     
     public function login($un,$pw){
-        if ( $un == "arjen" && $pw == "" ) { return TRUE; }
-        else { return FALSE; }
-        //return ($un == "" && $pw == ""); //TODO look into database
-        //(BTW, database looks also into you, BE CAREFUL)
+        
+        $users = $this->db->get_where('users',array('username' => $un))->result();
+        foreach ( $users as $user ) {
+        
+            if ( $pw == $user->password ) { return TRUE; }
+        
+        }
+        return FALSE;
+        //(BTW, database gazes also into you, BE CAREFUL)
+    }
+    public function signup($un,$pw){
+        
+        $users = $this->db->get_where('users',array('username' => $un))->result();
+        foreach ( $users as $user ) {
+            return FALSE;
+        }
+        $data = array(
+            'username' => $un,
+            'password' => $pw
+            // identifier => auto-increment
+        );
+        $this->db->insert('users', $data); 
+        return TRUE;
+        
     }
 
 }
