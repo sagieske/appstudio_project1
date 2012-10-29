@@ -40,6 +40,13 @@ class Pages extends CI_Controller {
         }
         return $correct;
     }
+    
+    public function rate($recipe) {
+        $rating = $this->input->post("rating");
+        $un = $this->session->userdata("username");
+        $correct = $this->Recipe_model->rate($un, $rating, $recipe);
+        return $correct;
+    }
 
     public function index()
     {
@@ -74,8 +81,14 @@ class Pages extends CI_Controller {
 	    } 
 	    //Recipe page:
 	    elseif ( $page == 'recipe' ) {
+	        if ( isset($_POST['rating']) ) {
+	    	    $this->rate($arg); // This function does all the rating.
+	    	}
 	        $recipes = $this->Recipe_model->get_one($arg);
-	        $this->load->view('pages/'.$page, array('recipes' => $recipes));
+	        $ratings = $this->Recipe_model->get_ratings( $arg );
+	        $this->load->view('pages/'.$page, array('recipes' => $recipes, 
+	                                                'ratings' => $ratings,
+	                                                'id' => $arg));
 	    }
 	    //Search page
 	    elseif ( $page == 'search' ) {

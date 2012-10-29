@@ -26,6 +26,10 @@ class Recipe_model extends CI_Model {
         return $this->db->order_by('recipeID', 'asc')->get('recipes')->result();
     }
     
+    public function get_ratings( $recipe ) {
+        return $this->db->get_where('ratings',array('recipeID' => $recipe))->result();
+    }
+    
     public function get_searched_time() { // Over should be "off" or "on"?
         return $this->db->order_by('recipeID', 'asc')->get('recipes')->result();
     }
@@ -57,7 +61,7 @@ class Recipe_model extends CI_Model {
         
         $users = $this->db->get_where('users',array('username' => $un))->result();
         foreach ( $users as $user ) {
-            return FALSE;
+            return FALSE; // Checks for existing users with the same name
         }
         $data = array(
             'username' => $un,
@@ -68,6 +72,25 @@ class Recipe_model extends CI_Model {
         return TRUE;
         
     }
+    
+    
+    public function rate($un, $rating, $recipe) {
+        $existing = $this->db->get_where('ratings',array('username' => $un,
+                                                       'recipeID' => $recipe))->result();
+        foreach ( $existing as $e ) {
+            return FALSE; // Breaks on existing rating.
+        }
+        $data = array(
+            'username' => $un,
+            'recipeID' => $recipe,
+            'rating' => $rating
+            // identifier => auto-increment
+        );
+        $this->db->insert('ratings', $data); 
+        return TRUE;
+        
+    }
+
 
 }
 
